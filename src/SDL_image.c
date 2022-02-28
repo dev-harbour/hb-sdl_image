@@ -43,7 +43,23 @@ SDL_RWops * hb_rwops_Param( int iParam )
 }
 
 // extern DECLSPEC int SDLCALL IMG_Init(int flags);
+HB_FUNC( IMG_INIT )
+{
+   if( hb_param( 1, HB_IT_INTEGER ) != NULL )
+   {
+      hb_retni( IMG_Init( hb_parni( 1 ) ) );
+   }
+   else
+   {
+      HB_ERR_ARGS();
+   }
+}
+
 // extern DECLSPEC void SDLCALL IMG_Quit(void);
+HB_FUNC( IMG_QUIT )
+{
+   IMG_Quit();
+}
 
 // extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadTyped_RW(SDL_RWops *src, int freesrc, const char *type);
 HB_FUNC( IMG_LOADTYPED_RW )
@@ -62,6 +78,18 @@ HB_FUNC( IMG_LOADTYPED_RW )
 }
 
 // extern DECLSPEC SDL_Surface * SDLCALL IMG_Load(const char *file);
+HB_FUNC( IMG_LOAD )
+{
+   if( hb_param( 1, HB_IT_STRING ) != NULL )
+   {
+      hb_surface_Return( IMG_Load( hb_parc( 1 ) ) );
+   }
+   else
+   {
+      HB_ERR_ARGS();
+   }
+}
+
 // extern DECLSPEC SDL_Surface * SDLCALL IMG_Load_RW(SDL_RWops *src, int freesrc);
 
 // #if SDL_VERSION_ATLEAST(2,0,0)
